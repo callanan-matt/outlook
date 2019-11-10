@@ -33,11 +33,11 @@ namespace OutlookClient.App.ViewModels
         private ObservableCollection<IContactViewModel> _selectedSearchResults;
         private ObservableCollection<IContactViewModel> _selectedContacts;
 
-        public ContactGroupViewModel(IEmailService emailService, Func<IContact, IContactViewModel> contactViewModelFactory, ILoggerFacade logger)
+        public ContactGroupViewModel(IEmailService emailService, ILoggerFacade logger, Func<IContact, IContactViewModel> contactViewModelFactory)
         {
             _emailService = emailService;
-            _contactViewModelFactory = contactViewModelFactory;
             _logger = logger;
+            _contactViewModelFactory = contactViewModelFactory;
             Contacts = new ObservableCollection<IContactViewModel>();
             SearchResults = new ObservableCollection<IContactViewModel>();
             PopulateCommand = new DelegateCommand(OnPopulate);

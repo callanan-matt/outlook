@@ -6,9 +6,9 @@ using Prism.Logging;
 namespace OutlookClient.App.ViewModels
 {
     [TestFixture]
-    public class ContactViewModelTests
+    public class ContactGroupViewModelTests
     {
-        private ContactViewModel _target;
+        private ContactGroupViewModel _target;
         private Mock<IEmailService> _emailService;
         private Mock<ILoggerFacade> _logger;
 
@@ -17,7 +17,8 @@ namespace OutlookClient.App.ViewModels
         {
             _emailService = new Mock<IEmailService>();
             _logger = new Mock<ILoggerFacade>();
-            _target = new ContactViewModel(_emailService.Object, _logger.Object, Mappings.MapToContact);
+            _target = new ContactGroupViewModel(_emailService.Object, _logger.Object,
+                x => Mappings.ToViewModel(x, () => new Mock<IContactViewModel>().Object, Mappings.MapToContact));
         }
     }
 }

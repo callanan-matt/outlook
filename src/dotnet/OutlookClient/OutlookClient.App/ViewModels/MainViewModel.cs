@@ -1,4 +1,5 @@
-﻿using Unity;
+﻿using Prism.Mvvm;
+using Unity;
 
 namespace OutlookClient.App.ViewModels
 {
@@ -7,9 +8,15 @@ namespace OutlookClient.App.ViewModels
         IEmailViewModel EmailViewModel { get; set; }
     }
 
-    public class MainViewModel : IMainViewModel
+    public class MainViewModel : BindableBase, IMainViewModel
     {
+        private IEmailViewModel _emailViewModel;
+
         [Dependency]
-        public IEmailViewModel EmailViewModel { get; set; }
+        public IEmailViewModel EmailViewModel
+        {
+            get => _emailViewModel;
+            set => SetProperty(ref _emailViewModel, value, nameof(EmailViewModel));
+        }
     }
 }

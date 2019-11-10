@@ -43,7 +43,6 @@ namespace OutlookClient.Services
 
     public class FakeEmailService : IEmailService
     {
-        private readonly string _filePath;
         private readonly Func<FakeContact[]> _dataGetter;
         private readonly Func<FakeContact, IContact> _contactFactory;
         private bool _isDataLoaded;

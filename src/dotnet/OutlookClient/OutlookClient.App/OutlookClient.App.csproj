@@ -176,7 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OutlookClient.Services\OutlookClient.Services.csproj">
-      <Project>{9cbef71d-1e2d-4f91-9502-05d5930d5a39}</Project>
+      <Project>{d2392de4-d81b-414d-bb0f-78aa4369ea30}</Project>
       <Name>OutlookClient.Services</Name>
     </ProjectReference>
   </ItemGroup>

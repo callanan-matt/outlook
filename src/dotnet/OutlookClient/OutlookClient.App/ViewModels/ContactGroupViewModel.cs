@@ -4,7 +4,6 @@ using System.Windows.Input;
 using OutlookClient.Services;
 using OutlookClient.Services.Models;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Logging;
 using Prism.Mvvm;
 
@@ -27,9 +26,7 @@ namespace OutlookClient.App.ViewModels
     {
         private readonly IEmailService _emailService;
         private readonly Func<IContact, IContactViewModel> _contactViewModelFactory;
-        private readonly IEventAggregator _eventAggregator;
         private readonly ILoggerFacade _logger;
-        private readonly Action<Exception> _onError;
         private bool _isNameOnlySearch;
         private string _searchText;
         private ObservableCollection<IContactViewModel> _selectedSearchResults;

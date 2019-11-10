@@ -61,7 +61,7 @@ namespace OutlookClient.App
                         mapper(x, viewModel);
                         return viewModel;
                     }, new SingletonLifetimeManager())
-                .RegisterInstance<Func<IContactListViewModel, IEnumerable<IContact>>>(
+                .RegisterInstance<Func<IContactGroupViewModel, IEnumerable<IContact>>>(
                     x =>
                     {
                         var modelFactory = container.Resolve<Func<IContactViewModel, IContact>>();
@@ -76,7 +76,7 @@ namespace OutlookClient.App
                     }, new SingletonLifetimeManager())
                 .RegisterType<ILoggerFacade, FakeLoggerFacade>(new SingletonLifetimeManager())
                 .RegisterType<IEmailService, FakeEmailService>(new SingletonLifetimeManager())
-                .RegisterType<IContactListViewModel, ContactListViewModel>(new TransientLifetimeManager())
+                .RegisterType<IContactGroupViewModel, ContactGroupViewModel>(new TransientLifetimeManager())
                 .RegisterType<IEmailViewModel, EmailViewModel>(new SingletonLifetimeManager())
                 .RegisterType<IMainViewModel, MainViewModel>(new SingletonLifetimeManager());
         }

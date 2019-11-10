@@ -104,7 +104,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FakeLoggerFacade.cs" />
-    <Compile Include="ViewModels\ContactListViewModel.cs" />
+    <Compile Include="ViewModels\ContactGroupViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\EmailViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

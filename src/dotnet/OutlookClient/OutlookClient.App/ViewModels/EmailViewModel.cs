@@ -11,10 +11,10 @@ namespace OutlookClient.App.ViewModels
 {
     public interface IEmailViewModel
     {
-        IContactListViewModel ToContactList { get; set; }
-        IContactListViewModel CcContactList { get; set; }
-        IContactListViewModel BccContactList { get; set; }
-        IContactListViewModel SelectedContactList { get; }
+        IContactGroupViewModel ToContactList { get; set; }
+        IContactGroupViewModel CcContactList { get; set; }
+        IContactGroupViewModel BccContactList { get; set; }
+        IContactGroupViewModel SelectedContactList { get; }
         string Subject { get; set; }
         string Body { get; set; }
         ICommand SendMailCommand { get; }
@@ -23,15 +23,15 @@ namespace OutlookClient.App.ViewModels
     public class EmailViewModel : BindableBase, IEmailViewModel
     {
         private readonly IEmailService _service;
-        private readonly Func<IContactListViewModel, IEnumerable<IContact>> _contactFactory;
-        private IContactListViewModel _toContactList;
-        private IContactListViewModel _ccContactList;
-        private IContactListViewModel _bccContactList;
-        private IContactListViewModel _selectedContactList;
+        private readonly Func<IContactGroupViewModel, IEnumerable<IContact>> _contactFactory;
+        private IContactGroupViewModel _toContactList;
+        private IContactGroupViewModel _ccContactList;
+        private IContactGroupViewModel _bccContactList;
+        private IContactGroupViewModel _selectedContactList;
         private string _subject;
         private string _body;
 
-        public EmailViewModel(IEmailService service, Func<IContactListViewModel, IEnumerable<IContact>> contactFactory)
+        public EmailViewModel(IEmailService service, Func<IContactGroupViewModel, IEnumerable<IContact>> contactFactory)
         {
             _service = service;
             _contactFactory = contactFactory;
@@ -49,27 +49,27 @@ namespace OutlookClient.App.ViewModels
         }
 
         [Dependency]
-        public IContactListViewModel ToContactList
+        public IContactGroupViewModel ToContactList
         {
             get => _toContactList; 
             set => SetProperty(ref _toContactList, value, nameof(ToContactList));
         }
 
         [Dependency]
-        public IContactListViewModel CcContactList
+        public IContactGroupViewModel CcContactList
         {
             get => _ccContactList;
             set => SetProperty(ref _ccContactList, value, nameof(CcContactList));
         }
 
         [Dependency]
-        public IContactListViewModel BccContactList
+        public IContactGroupViewModel BccContactList
         {
             get => _bccContactList; 
             set => SetProperty(ref _bccContactList, value, nameof(BccContactList));
         }
 
-        public IContactListViewModel SelectedContactList
+        public IContactGroupViewModel SelectedContactList
         {
             get => _selectedContactList; 
             private set => SetProperty(ref _selectedContactList, value, nameof(SelectedContactList));

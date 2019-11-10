@@ -4,12 +4,13 @@ using System.Windows.Input;
 using OutlookClient.Services;
 using OutlookClient.Services.Models;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Logging;
 using Prism.Mvvm;
 
 namespace OutlookClient.App.ViewModels
 {
-    public interface IContactListViewModel
+    public interface IContactGroupViewModel
     {
         bool IsNameOnlySearch { get; set; }
         string SearchText { get; set; }
@@ -22,10 +23,11 @@ namespace OutlookClient.App.ViewModels
         ICommand RemoveSelectedContacts { get; }
     }
 
-    public class ContactListViewModel : BindableBase, IContactListViewModel
+    public class ContactGroupViewModel : BindableBase, IContactGroupViewModel
     {
         private readonly IEmailService _emailService;
         private readonly Func<IContact, IContactViewModel> _contactViewModelFactory;
+        private readonly IEventAggregator _eventAggregator;
         private readonly ILoggerFacade _logger;
         private readonly Action<Exception> _onError;
         private bool _isNameOnlySearch;
@@ -33,7 +35,7 @@ namespace OutlookClient.App.ViewModels
         private ObservableCollection<IContactViewModel> _selectedSearchResults;
         private ObservableCollection<IContactViewModel> _selectedContacts;
 
-        public ContactListViewModel(IEmailService emailService, Func<IContact, IContactViewModel> contactViewModelFactory, ILoggerFacade logger)
+        public ContactGroupViewModel(IEmailService emailService, Func<IContact, IContactViewModel> contactViewModelFactory, ILoggerFacade logger)
         {
             _emailService = emailService;
             _contactViewModelFactory = contactViewModelFactory;

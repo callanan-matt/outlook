@@ -17,9 +17,10 @@ namespace OutlookClient.App.ViewModels
         ObservableCollection<IContactViewModel> SelectedContacts { get; }
         ObservableCollection<IContactViewModel> SearchResults { get; }
         ObservableCollection<IContactViewModel> SelectedSearchResults { get; }
+        ICommand PopulateCommand { get; }
         ICommand SearchCommand { get; }
-        ICommand AddSelectedSearchResults { get; }
-        ICommand RemoveSelectedContacts { get; }
+        ICommand AddSelectedSearchResultsCommand { get; }
+        ICommand RemoveSelectedContactsCommand { get; }
     }
 
     public class ContactGroupViewModel : BindableBase, IContactGroupViewModel
@@ -39,9 +40,15 @@ namespace OutlookClient.App.ViewModels
             _logger = logger;
             Contacts = new ObservableCollection<IContactViewModel>();
             SearchResults = new ObservableCollection<IContactViewModel>();
+            PopulateCommand = new DelegateCommand(OnPopulate);
             SearchCommand = new DelegateCommand(OnSearch, () => !string.IsNullOrWhiteSpace(SearchText));
-            AddSelectedSearchResults = new DelegateCommand(OnAddContacts, () => SelectedSearchResults.Count > 0);
-            RemoveSelectedContacts = new DelegateCommand(OnRemoveContacts, () => SelectedContacts.Count > 0);
+            AddSelectedSearchResultsCommand = new DelegateCommand(OnAddContacts, () => SelectedSearchResults.Count > 0);
+            RemoveSelectedContactsCommand = new DelegateCommand(OnRemoveContacts, () => SelectedContacts.Count > 0);
+        }
+
+        private void OnPopulate()
+        {
+            throw new NotImplementedException();
         }
 
         private void OnRemoveContacts()
@@ -100,8 +107,9 @@ namespace OutlookClient.App.ViewModels
             set => SetProperty(ref _selectedSearchResults, value, nameof(SelectedSearchResults));
         }
 
+        public ICommand PopulateCommand { get; }
         public ICommand SearchCommand { get; }
-        public ICommand AddSelectedSearchResults { get; }
-        public ICommand RemoveSelectedContacts { get; }
+        public ICommand AddSelectedSearchResultsCommand { get; }
+        public ICommand RemoveSelectedContactsCommand { get; }
     }
 }

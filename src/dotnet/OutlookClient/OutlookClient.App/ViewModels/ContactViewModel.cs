@@ -10,14 +10,14 @@ namespace OutlookClient.App.ViewModels
 {
     public interface IContactViewModel
     {
-        string Name { get; }
-        string EmailAddress { get; }
-        string Location { get; }
-        string Address { get; }
-        string Phone { get; }
-        string Company { get; }
-        string Alias { get; }
-        string Thumbnail { get; }
+        string Name { get; set; }
+        string EmailAddress { get; set; }
+        string Location { get; set; }
+        string Address { get; set; }
+        string Phone { get; set; }
+        string Company { get; set; }
+        string Alias { get; set; }
+        string Thumbnail { get; set; }
         string SearchText { get; set; }
         ICommand SaveCommand { get; }
         ICommand SearchCommand { get; }
@@ -27,7 +27,7 @@ namespace OutlookClient.App.ViewModels
     {
         private readonly IEmailService _emailService;
         private readonly ILoggerFacade _logger;
-        private readonly Action<IContact, ContactViewModel> _mapper;
+        private readonly Action<IContact, IContactViewModel> _mapper;
         private string _name;
         private string _location;
         private string _address;
@@ -38,7 +38,7 @@ namespace OutlookClient.App.ViewModels
         private string _emailAddress;
         private string _searchText;
 
-        public ContactViewModel(IEmailService emailService, ILoggerFacade logger, Action<IContact, ContactViewModel> mapper)
+        public ContactViewModel(IEmailService emailService, ILoggerFacade logger, Action<IContact, IContactViewModel> mapper)
         {
             _emailService = emailService;
             _logger = logger;
